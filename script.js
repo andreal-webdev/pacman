@@ -334,48 +334,50 @@ function animate() {
 
 
 animate() 
-//this is setting up the key to make pacman move when pressing down the keys
-window.addEventListener('keydown', ({key}) =>{
-    console.log(key) //I used this to find out the name of the arrows
-    switch (key){ //lastKey is necesesary when two keys are pressed at the same time, so the pacman moves depending which was the last key being pressed. This way the pacman will keep moving instead of stopping.
-        case 'ArrowUp': 
-            keys.ArrowUp.pressed = true
-            lastKey = 'ArrowUp'
-            break //the break is stop
-        case 'ArrowLeft':
-            keys.ArrowLeft.pressed = true
-            lastKey = 'ArrowLeft'
-            break
-        case 'ArrowDown':
-            keys.ArrowDown.pressed = true
-            lastKey = 'ArrowDown'
-            break
-        case 'ArrowRight':
-            keys.ArrowRight.pressed = true
-            lastKey = 'ArrowRight'
-            break
-       
-    }
-})
-//this is setting up the key to make pacman stop when pressing up the key
-window.addEventListener('keyup', ({key}) =>{
-    
-    switch (key){
+// this is setting up the key to make pacman move when pressing down the keys
+window.addEventListener('keydown', (event) => {
+    event.preventDefault(); // prevent the default behavior of arrow key presses
+    console.log(event.key); //I used this to find out the name of the arrows
+    switch (event.key) { //lastKey is necessary when two keys are pressed at the same time, so the pacman moves depending on which was the last key being pressed. This way the pacman will keep moving instead of stopping.
         case 'ArrowUp':
-            keys.ArrowUp.pressed = false 
-            break
+            keys.ArrowUp.pressed = true;
+            lastKey = 'ArrowUp';
+            break; //the break is to stop
         case 'ArrowLeft':
-            keys.ArrowLeft.pressed = false
-            break
+            keys.ArrowLeft.pressed = true;
+            lastKey = 'ArrowLeft';
+            break;
         case 'ArrowDown':
-            keys.ArrowDown.pressed = false
-            break
+            keys.ArrowDown.pressed = true;
+            lastKey = 'ArrowDown';
+            break;
         case 'ArrowRight':
-            keys.ArrowRight.pressed = false
-            break  
-       
+            keys.ArrowRight.pressed = true;
+            lastKey = 'ArrowRight';
+            break;
+
     }
-})
+});
+
+// this is setting up the key to make pacman stop when pressing up the key
+window.addEventListener('keyup', (event) => {
+    event.preventDefault(); // prevent the default behavior of arrow key releases
+    switch (event.key) {
+        case 'ArrowUp':
+            keys.ArrowUp.pressed = false;
+            break;
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = false;
+            break;
+        case 'ArrowDown':
+            keys.ArrowDown.pressed = false;
+            break;
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = false;
+            break;
+
+    }
+});
  
 
 
